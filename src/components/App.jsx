@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { nanoid } from 'nanoid';
 import { Form } from './form/Form';
-
+import { Contacts } from './Contacts/Contacts';
 export class App extends Component {
   state = {
     contacts: [
@@ -25,21 +25,27 @@ export class App extends Component {
       { id: 'id-19', name: 'Annie Copeland', number: '227-91-26' },
     ],
     name: '',
+    number: '',
+    filter: '',
   };
   handleChange = e => {
-    const { name, value } = e.target;
+    const { name, number, value, filter } = e.target;
     this.setState({ [name]: value });
+    this.setState({ [number]: value });
+    this.setState({ [filter]: value });
+    console.log(this.filter);
   };
   handleSubmit = e => {
     e.preventDefault();
     const contact = {
       id: nanoid(),
       name: this.state.name,
+      number: this.state.number,
     };
     const addContact = [contact, ...this.state.contacts];
     this.setState({ contacts: addContact });
     this.setState({ name: '' });
-    console.log(this.state.contacts);
+    this.setState({ number: '' });
   };
   render() {
     return (
@@ -48,8 +54,13 @@ export class App extends Component {
           handleChange={this.handleChange}
           handleSubmit={this.handleSubmit}
           name={this.state.name}
+          number={this.state.number}
         />
-        <Contacts/>
+        <Contacts
+          contactsArr={this.state.contacts}
+          filter={this.state.filter}
+          handleChange={this.handleChange}
+        />
       </div>
     );
   }
