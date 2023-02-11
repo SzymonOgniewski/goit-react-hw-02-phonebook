@@ -1,19 +1,30 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
+import css from './contactlist.module.css';
 export class ContactList extends Component {
   render() {
-    const { contactsArr } = this.props;
+    const { contactsArr, filter, handleRemove } = this.props;
 
-    const list = contactsArr.map(contact => (
-      <li key={contact.id}>
-        <span>
-          {contact.name}: {contact.number}
-        </span>
-      </li>
-    ));
+    const list = contactsArr
+      .filter(contact =>
+        contact.name.toLowerCase().includes(filter.toLowerCase())
+      )
+      .map(contact => (
+        <li key={contact.id} className={css.item}>
+          <span className={css.data}>
+            {contact.name}: {contact.number}
+          </span>
+          <button
+            type="button"
+            onClick={() => handleRemove(contact.id)}
+            className={css.delBtn}
+          >
+            Delete
+          </button>
+        </li>
+      ));
 
-    return <ul>{list}</ul>;
+    return <ul className={css.list}>{list}</ul>;
   }
 }
 

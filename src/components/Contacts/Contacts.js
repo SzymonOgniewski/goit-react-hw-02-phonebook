@@ -2,20 +2,21 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { ContactList } from './ContactsList/ContactList';
 import { Filter } from './Filter/Filter';
+import css from './contacts.module.css';
 export class Contacts extends Component {
   render() {
-    const { contactsArr, filter, handleChange, handleFilter } = this.props;
+    const { contactsArr, filter, handleChange, handleRemove } = this.props;
 
     return (
-      <>
-        <h2>Contacts</h2>
-        <Filter
+      <div className={css.container}>
+        <h2 className={css.title}>Contacts</h2>
+        <Filter filter={filter} handleChange={handleChange} />
+        <ContactList
+          contactsArr={contactsArr}
           filter={filter}
-          handleChange={handleChange}
-          handleFilter={handleFilter}
+          handleRemove={handleRemove}
         />
-        <ContactList contactsArr={contactsArr} />
-      </>
+      </div>
     );
   }
 }
@@ -29,4 +30,5 @@ Contacts.propTypes = {
       number: PropTypes.string,
     })
   ),
+  filter: PropTypes.string,
 };

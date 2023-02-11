@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
+import css from './tel.module.css';
 export class SaveTel extends Component {
   render() {
     const { handleChange, number } = this.props;
     return (
       <>
-        <label htmlFor="phone number">Phone number</label>
+        <label htmlFor="phone number" className={css.label}>
+          Phone number
+        </label>
         <input
+          className={css.input}
           onChange={handleChange}
           value={number}
           autoComplete="off"

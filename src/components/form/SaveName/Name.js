@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import css from './name.module.css';
 
 export class SaveName extends Component {
   render() {
     const { handleChange, name } = this.props;
     return (
       <>
-        <label htmlFor="name">Name</label>
+        <label className={css.label} htmlFor="name">
+          Name
+        </label>
         <input
+          className={css.input}
           onChange={handleChange}
           value={name}
           autoComplete="off"

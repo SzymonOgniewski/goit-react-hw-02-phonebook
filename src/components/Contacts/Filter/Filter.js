@@ -1,15 +1,18 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
+import css from './filter.module.css';
 export class Filter extends Component {
   render() {
-    const { filter, handleChange, handleFilter } = this.props;
+    const { filter, handleChange } = this.props;
     return (
       <>
-        <label>Find contacts by name</label>
+        <label className={css.label} htmlFor="filter">
+          Find contacts by name
+        </label>
 
         <input
-          onChange={(handleChange, handleFilter)}
+          className={css.input}
+          onChange={handleChange}
           autoComplete="off"
           type="text"
           name="filter"
