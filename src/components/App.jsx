@@ -35,6 +35,12 @@ export class App extends Component {
     this.setState({ [filter]: value });
     console.log(this.filter);
   };
+  handleFilter = e => {
+    const filterQuery = this.state.filter.toLowerCase();
+    return this.state.contacts.filter(contact =>
+      contact.name.includes(filterQuery)
+    );
+  };
   handleSubmit = e => {
     e.preventDefault();
     const contact = {
@@ -60,6 +66,7 @@ export class App extends Component {
           contactsArr={this.state.contacts}
           filter={this.state.filter}
           handleChange={this.handleChange}
+          handleFilter={this.handleFilter}
         />
       </div>
     );

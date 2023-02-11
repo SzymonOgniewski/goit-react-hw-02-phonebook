@@ -4,12 +4,16 @@ import { ContactList } from './ContactsList/ContactList';
 import { Filter } from './Filter/Filter';
 export class Contacts extends Component {
   render() {
-    const { contactsArr, filter, handleChange } = this.props;
+    const { contactsArr, filter, handleChange, handleFilter } = this.props;
 
     return (
       <>
         <h2>Contacts</h2>
-        <Filter filter={filter} handleChange={handleChange} />
+        <Filter
+          filter={filter}
+          handleChange={handleChange}
+          handleFilter={handleFilter}
+        />
         <ContactList contactsArr={contactsArr} />
       </>
     );

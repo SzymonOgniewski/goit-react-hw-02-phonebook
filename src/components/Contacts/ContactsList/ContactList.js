@@ -3,19 +3,15 @@ import PropTypes from 'prop-types';
 
 export class ContactList extends Component {
   render() {
-    const { contactsArr, filter } = this.props;
+    const { contactsArr } = this.props;
 
-    const list = contactsArr
-      .filter(contact =>
-        contact.name.toLowerCase().includes(filter.toLowerCase())
-      )
-      .map(contact => (
-        <li key={contact.id}>
-          <span>
-            {contact.name}: {contact.number}
-          </span>
-        </li>
-      ));
+    const list = contactsArr.map(contact => (
+      <li key={contact.id}>
+        <span>
+          {contact.name}: {contact.number}
+        </span>
+      </li>
+    ));
 
     return <ul>{list}</ul>;
   }
