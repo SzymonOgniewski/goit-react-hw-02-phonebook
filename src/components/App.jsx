@@ -21,11 +21,8 @@ export class App extends Component {
   };
 
   handleChange = e => {
-    const { name, number, value, filter } = e.target;
-
+    const { name, value } = e.target;
     this.setState({ [name]: value });
-    this.setState({ [number]: value });
-    this.setState({ [filter]: value });
   };
 
   handleSubmit = e => {
@@ -40,9 +37,7 @@ export class App extends Component {
         number: this.state.number,
       };
       const addContact = [contact, ...this.state.contacts];
-      this.setState({ contacts: addContact });
-      this.setState({ name: '' });
-      this.setState({ number: '' });
+      this.setState({ contacts: addContact, number: '', name: '' });
     }
   };
   render() {
